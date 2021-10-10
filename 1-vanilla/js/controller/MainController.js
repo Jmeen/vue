@@ -5,6 +5,14 @@ const tag = "[MainController]";
 export default {
   init() {
     console.log(tag, "init()");
-    FormView.setup(document.querySelector("form"));
+    FormView.setup(document.querySelector("form")).on("@submit", (e) =>
+      this.onSubmit(e.detail.input)
+    );
+  },
+
+  onSubmit(event, input) {
+    event.preventDefault();
+
+    console.log(tag, "onsubmit", input);
   },
 };

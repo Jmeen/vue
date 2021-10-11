@@ -21,14 +21,24 @@ FormView.bindEvents = function () {
   this.inputEl.addEventListener("keyup", (event) => {
     this.onKeyup(event);
   });
+
+  // 클릭 시 X사라짐
+  this.resetEl.addEventListener("click", () => {
+    this.onClickReset();
+  });
 };
 
 FormView.onKeyup = function (event) {
   const enter = 13;
-
-  this.showResetBtn(this.inputEl.value.length > 0);
+  this.showResetBtn(this.inputEl.value.length);
+  if (!this.inputEl.value.length) this.emit("@reset");
   if (event.keyCode !== enter) return;
   this.emit("@submit", { input: this.inputEl.value });
+};
+
+FormView.onClickReset = function () {
+  this.emit("@reset");
+  this.showResetBtn(false);
 };
 
 export default FormView;

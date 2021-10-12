@@ -10,13 +10,11 @@ export default {
       .on("@reset", (e) => this.onResetForm());
   },
 
-  onSubmit(event, input) {
-    event.preventDefault();
-
-    console.log(tag, "onsubmit", input);
+  onSubmit(input) {
+    console.log(tag, "onSubmit()", input);
   },
 
   onResetForm() {
-    console.log(tag, "onREsetForm");
+    console.log(tag, "onResetForm()");
   },
 };
